@@ -5,6 +5,8 @@ extends CharacterBody3D
 @onready var player_body := $"."
 @onready var neck_camera := $Neck/Camera3D
 
+var xform : Transform3D
+
 const MIN_ZOOM_FACTOR = 0.3
 const MAX_ZOOM_FACTOR = INF
 const CAMERA_DISTANCE_SCALE_Y = 1.7
@@ -12,7 +14,7 @@ const CAMERA_DISTANCE_SCALE_Z = 3.4
 const CAMERA_ZOOM_SENSITIVITY = 1.05
 const CAMERA_SENSITIVITY = 0.005
 const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 12
 
 
 func _physics_process(delta: float) -> void:
@@ -34,9 +36,24 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+		
 	move_and_slide()
-
+	if is_on_floor():
+		align_with_floor(get_floor_normal())
+		global_transform = global_transform.interpolate_with(xform, 0.3)
+	
+func align_with_floor(floor_normal: Vector3) -> void:
+	xform = global_transform
+	if floor_normal.is_zero_approx():
+		return
+	var right_axis := floor_normal.cross(xform.basis.z)
+	if right_axis.is_zero_approx():
+		return
+	xform.basis.y = floor_normal.normalized()
+	xform.basis.x = right_axis.normalized()
+	xform.basis.z = xform.basis.x.cross(xform.basis.y).normalized()
+	xform.basis = xform.basis.orthonormalized()
+		
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -49,8 +66,8 @@ func _input(event: InputEvent) -> void:
 
 			neck.rotation.x = clamp(
 				neck.rotation.x - event.relative.y * CAMERA_SENSITIVITY,
-				deg_to_rad(-89),
-				deg_to_rad(89)
+				deg_to_rad(-90),
+				deg_to_rad(90)
 			)
 	if event is InputEventMouseButton and event.is_pressed():
 		

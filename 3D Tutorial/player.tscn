@@ -12,6 +12,19 @@ radius = 0.3
 height = 1.5
 radial_segments = 12
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_rjfiy"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.071
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7ysn"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_223sr"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.085
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
 radius = 0.3
 height = 1.5
@@ -19,13 +32,25 @@ height = 1.5
 [node name="Player" type="CharacterBody3D" unique_id=995211727]
 script = ExtResource("1_4flbx")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=118094043]
+[node name="Body" type="MeshInstance3D" parent="." unique_id=118094043]
 mesh = SubResource("CapsuleMesh_i3pqv")
 
+[node name="Eye" type="MeshInstance3D" parent="Body" unique_id=390110722]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.446, -0.27)
+mesh = SubResource("CylinderMesh_rjfiy")
+
+[node name="Pupil" type="MeshInstance3D" parent="Body/Eye" unique_id=1822731614]
+material_overlay = SubResource("StandardMaterial3D_y7ysn")
+mesh = SubResource("CylinderMesh_223sr")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1465747907]
+visible = false
 shape = SubResource("CapsuleShape3D_4flbx")
 
 [node name="Neck" type="Node3D" parent="." unique_id=1493285623]
 
 [node name="Camera3D" type="Camera3D" parent="Neck" unique_id=2052398617]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.4)
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=943019479]
+target_position = Vector3(0, -25, 0)
