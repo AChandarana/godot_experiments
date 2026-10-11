@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://spb6nkpmeljd"]
+
+[ext_resource type="Script" uid="uid://ibrspp8j2xmv" path="res://coin.gd" id="1_d5gmh"]
+[ext_resource type="ArrayMesh" uid="uid://ky2eajoxethe" path="res://Assets/Models/coin.res" id="2_0t63x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_223sr"]
+size = Vector3(0.15, 0.6, 0.6)
+
+[node name="Coin" type="Area3D" unique_id=1566483664]
+script = ExtResource("1_d5gmh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=476030446]
+transform = Transform3D(-1.2999227e-08, -0.35608378, 0, -1.29992275e-08, 6.8036413e-16, -0.29738766, 0.29738766, -1.5564915e-08, -1.29992275e-08, 0, 0, 0)
+mesh = ExtResource("2_0t63x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1342129693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0036621094, 0.0049743652, 0.00048828125)
+shape = SubResource("BoxShape3D_223sr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

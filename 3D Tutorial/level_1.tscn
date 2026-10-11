@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bk1mrethdpvdy"]
+
+[ext_resource type="PackedScene" uid="uid://b6p7q18jsde1i" path="res://block.tscn" id="1_3hls8"]
+[ext_resource type="PackedScene" uid="uid://bn254t46qxf72" path="res://player.tscn" id="2_hbghi"]
+[ext_resource type="Environment" uid="uid://dvh6des78glfn" path="res://Assets/Resources/sunset_ocean_sky.tres" id="4_ihfcg"]
+[ext_resource type="PackedScene" uid="uid://spb6nkpmeljd" path="res://coin.tscn" id="5_rka8t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ts8vd"]
+albedo_color = Color(0.24055423, 0.4920501, 0.2018626, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_223sr"]
+material = SubResource("StandardMaterial3D_ts8vd")
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rjfiy"]
+size = Vector3(10, 0.5, 10)
+
+[node name="Level1" type="Node3D" unique_id=1510560022]
+
+[node name="Blocks" type="Node3D" parent="." unique_id=312584820]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.22953773)
+
+[node name="Block1" parent="Blocks" unique_id=1008065366 instance=ExtResource("1_3hls8")]
+transform = Transform3D(1, 0, 0, 0, 0.968941, 0.24729213, 0, -0.24729213, 0.968941, 0, 3.3441014, 0)
+
+[node name="Block2" parent="Blocks" unique_id=253833390 instance=ExtResource("1_3hls8")]
+transform = Transform3D(1, 0, 0, 0, 0.968941, 0.24729213, 0, -0.24729213, 0.968941, 0, 5.201692, 0)
+
+[node name="Block3" parent="Blocks" unique_id=979286396 instance=ExtResource("1_3hls8")]
+transform = Transform3D(1, 0, 0, 0, 0.8776931, 0.47922295, 0, -0.47922295, 0.8776931, 0, 8.441929, 1.891005)
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1419956499]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24692464, 0)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=348029174]
+mesh = SubResource("BoxMesh_223sr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1708818547]
+shape = SubResource("BoxShape3D_rjfiy")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1940023148]
+transform = Transform3D(-0.6601953, 0.6475317, 0.38058504, 0.3432847, -0.19055222, 0.9196986, 0.6680553, 0.73782974, -0.096486025, 0, 7.089, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." unique_id=995211727 instance=ExtResource("2_hbghi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7064614, 2.5322711)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=755111766]
+transform = Transform3D(1, 0, 0, 0, 0.9201858, 0.391482, 0, -0.391482, 0.9201858, -0.08609676, 4.594479, 7.8198657)
+fov = 80.7
+
+[node name="Coin" parent="." unique_id=1566483664 instance=ExtResource("5_rka8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.278983, 0.6861429, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1991187368]
+environment = ExtResource("4_ihfcg")
