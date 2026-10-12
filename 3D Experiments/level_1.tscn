@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bk1mrethdpvdy"]
+
+[ext_resource type="PackedScene" uid="uid://bn254t46qxf72" path="res://player.tscn" id="2_hbghi"]
+[ext_resource type="PackedScene" uid="uid://dd5htv5wdbipx" path="res://planet.tscn" id="3_hn12h"]
+[ext_resource type="Environment" uid="uid://dvh6des78glfn" path="res://Assets/Resources/sunset_ocean_sky.tres" id="4_ihfcg"]
+
+[node name="Level1" type="Node3D" unique_id=1510560022]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1940023148]
+transform = Transform3D(-0.6601953, 0.6475317, 0.38058504, 0.3432847, -0.19055222, 0.9196986, 0.6680553, 0.73782974, -0.096486025, 0, 7.089, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." unique_id=995211727 instance=ExtResource("2_hbghi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.2823925, 0.6820252)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1991187368]
+environment = ExtResource("4_ihfcg")
+
+[node name="Planet" parent="." unique_id=124069597 instance=ExtResource("3_hn12h")]

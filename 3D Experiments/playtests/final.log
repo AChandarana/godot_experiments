@@ -1,0 +1,12 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: move_forward; travel=532.951463535152; airborne=0; radius range=0.0000057220459
+PASS: move_backward; travel=532.951463535152; airborne=0; radius range=0.0000057220459
+PASS: move_left; travel=532.9514577455; airborne=0; radius range=0.0000057220459
+PASS: move_right; travel=532.9514577455; airborne=0; radius range=0.0000057220459
+PASS: diagonal; travel=532.951461293996; airborne=0; radius range=0.0000057220459
+PASS: jump and landing at (0.0, 1.0, 0.0); height=4.10011291503906
+PASS: jump and landing at (1.0, 0.0, 0.0); height=4.10011291503906
+PASS: jump and landing at (0.0, -1.0, 0.0); height=4.10011291503906
+PASS: jump and landing at (0.0, 0.0, -1.0); height=4.10011959075928
+PASS: all planet playtests completed
